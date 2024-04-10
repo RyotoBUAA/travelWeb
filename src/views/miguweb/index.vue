@@ -3,7 +3,7 @@
     <iframe
       src="https://www.migufun.com/miguplay/middleGame/gameplay/feature/650786758"
       width="100%"
-      height="500px"
+      height="700px"
       frameborder="0"
       allowfullscreen
     />
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
-/* 你的样式 */
+
 </style>
