@@ -133,6 +133,7 @@ export default {
     } else if (this.loginForm.password === '') {
       this.$refs.password.focus()
     }
+    this.handleLogin()
   },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
@@ -197,6 +198,7 @@ export default {
     //   }
     // }
   }
+
 }
 </script>
 
