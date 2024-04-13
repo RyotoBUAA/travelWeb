@@ -19,7 +19,7 @@ selenium-debug.log
 *.sln
 *.local
 
-public/videoFile/*
+
 
 package-lock.json
 yarn.lock
