@@ -287,17 +287,54 @@ export const asyncRoutes = [
     children: [
       {
         path: 'scene1',
-        component: () => import('@/views/excel/export-excel'),
+        component: () => import('@/views/scene'),
         name: 'scene1',
-        meta: { title: '场景1' }
+        props: {
+          videoName: 'scene1',
+          htmlName: 'scene1'
+        },
+        meta: { title: '大运河森林公园' }
       },
       {
         path: 'scene2',
-        component: () => import('@/views/excel/select-excel'),
+        component: () => import('@/views/scene'),
         name: 'scene2',
-        meta: { title: '场景2' }
-      }
-    ]
+        props: {
+          videoName: 'scene2',
+          htmlName: 'scene2'
+        },
+        meta: { title: '通州三大文化中心' }
+      },
+      {
+        path: 'scene3',
+        component: () => import('@/views/scene'),
+        name: 'scene3',
+        props: {
+          videoName: 'scene3',
+          htmlName: 'scene3'
+        },
+        meta: { title: '西海子公园' }
+      },
+      {
+        path: 'scene4',
+        component: () => import('@/views/scene'),
+        name: 'scene4',
+        props: {
+          videoName: 'scene4',
+          htmlName: 'scene4'
+        },
+        meta: { title: '环球影城' }
+      },
+      {
+        path: 'scene5',
+        component: () => import('@/views/scene'),
+        name: 'scene5',
+        props: {
+          videoName: 'scene5',
+          htmlName: 'scene5'
+        },
+        meta: { title: '布拉格农场' }
+      }]
   },
 
   // {
