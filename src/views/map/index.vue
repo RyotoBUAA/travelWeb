@@ -8,13 +8,15 @@
 
 <script>
 import AMapLoader from '@amap/amap-jsapi-loader'
+import Platform from '../example/components/Dropdown/Platform.vue'
 export default {
   name: 'Map',
   data() {
     return {
       selected: [],
       pos: [],
-      recommend: []
+      recommend: [],
+      lines: []
     }
   },
   mounted() {
@@ -37,8 +39,8 @@ export default {
           this.map = new AMap.Map('container', {
             // 设置地图容器id
             viewMode: '3D', // 是否为3D地图模式
-            zoom: 11, // 初始化地图级别
-            center: [116.397428, 39.90923] // 初始化地图中心点位置
+            zoom: 11.5, // 初始化地图级别
+            center: [116.7, 39.90923] // 初始化地图中心点位置
           })
           this.map.on('click', (e) => {
             const marker = new AMap.Marker({
@@ -48,6 +50,17 @@ export default {
             marker.setMap(this.map)
             marker.setIcon('//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png')
             this.selected.push(marker)
+            var nn = this.pos.length
+            if (nn > 0) {
+              var polyline = new AMap.Polyline({
+                path: [new AMap.LngLat(this.pos[nn - 1][0], this.pos[nn - 1][1]), new AMap.LngLat(e.lnglat.lng, e.lnglat.lat)],
+                strokeWeight: 4, //线条宽度
+                strokeColor: "red", //线条颜色
+                lineJoin: "round", //折线拐点连接处样式
+              })
+              polyline.setMap(this.map)
+              this.lines.push(polyline)
+            }
             this.pos.push([e.lnglat.lng, e.lnglat.lat])
           })
         })
@@ -63,10 +76,24 @@ export default {
         latsum += p[1]
       })
       if (this.recommend.length == 0) {
+        var xx = lngsum / this.pos.length + Math.random() * 0.03
+        var yy = latsum / this.pos.length + Math.random() * 0.03
         const marker = new AMap.Marker({
-          position: new AMap.LngLat(lngsum / this.pos.length + Math.random() * 0.03, latsum / this.pos.length + Math.random() * 0.03), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
+          position: new AMap.LngLat(xx, yy), // 经纬度对象，也可以是经纬度构成的一维数组[116.39, 39.9]
           title: '推荐地点'
         })
+        var nn = this.pos.length
+        if (nn > 0) {
+          var polyline = new AMap.Polyline({
+            path: [new AMap.LngLat(this.pos[nn - 1][0], this.pos[nn - 1][1]), new AMap.LngLat(xx, yy)],
+            strokeWeight: 4, //线条宽度
+            strokeColor: "red", //线条颜色
+            lineJoin: "round", //折线拐点连接处样式
+            strokeStyle: "dashed"
+          })
+          polyline.setMap(this.map)
+          this.lines.push(polyline)
+        }
         marker.setMap(this.map)
         marker.setIcon('//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png')
         this.recommend.push(marker)
@@ -80,6 +107,10 @@ export default {
       this.recommend.forEach(marker => {
         marker.setMap(null)
         marker = null
+      })
+      this.lines.forEach(polyline => {
+        polyline.setMap(null)
+        polyline = null
       })
       this.selected = []
       this.pos = []
