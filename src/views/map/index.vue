@@ -54,9 +54,9 @@ export default {
             if (nn > 0) {
               var polyline = new AMap.Polyline({
                 path: [new AMap.LngLat(this.pos[nn - 1][0], this.pos[nn - 1][1]), new AMap.LngLat(e.lnglat.lng, e.lnglat.lat)],
-                strokeWeight: 4, //线条宽度
-                strokeColor: "red", //线条颜色
-                lineJoin: "round", //折线拐点连接处样式
+                strokeWeight: 4, // 线条宽度
+                strokeColor: 'red', // 线条颜色
+                lineJoin: 'round' // 折线拐点连接处样式
               })
               polyline.setMap(this.map)
               this.lines.push(polyline)
@@ -86,10 +86,10 @@ export default {
         if (nn > 0) {
           var polyline = new AMap.Polyline({
             path: [new AMap.LngLat(this.pos[nn - 1][0], this.pos[nn - 1][1]), new AMap.LngLat(xx, yy)],
-            strokeWeight: 4, //线条宽度
-            strokeColor: "red", //线条颜色
-            lineJoin: "round", //折线拐点连接处样式
-            strokeStyle: "dashed"
+            strokeWeight: 4, // 线条宽度
+            strokeColor: 'red', // 线条颜色
+            lineJoin: 'round', // 折线拐点连接处样式
+            strokeStyle: 'dashed'
           })
           polyline.setMap(this.map)
           this.lines.push(polyline)
