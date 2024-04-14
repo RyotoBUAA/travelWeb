@@ -49,6 +49,16 @@ export default {
             })
             marker.setMap(this.map)
             marker.setIcon('//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png')
+            if (this.recommend.length != 0) {
+              this.lines[this.lines.length - 1].setMap(null)
+              this.lines[this.lines.length - 1] = null
+              this.lines.pop()
+              this.recommend.forEach(marker => {
+                marker.setMap(null)
+                marker = null
+              })
+              this.recommend = []
+            }
             this.selected.push(marker)
             var nn = this.pos.length
             if (nn > 0) {
